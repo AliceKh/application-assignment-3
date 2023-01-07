@@ -1,70 +1,57 @@
 import { useContext, useRef } from "react";
 import AuthContext from "../../store/auth-context";
 import classes from "./ChangePass.module.css";
-import { useHistory } from "react-router-dom";
-import { doc, setDoc } from "firebase/firestore";
 import {db} from "../../store/firebase.js" 
+import { getDatabase, ref, set } from "firebase/database";
 
 const AddDetails = () => {
   const nameInputRef = useRef();
   const idInputRef = useRef();
   const addressInputRef = useRef();
   const phoneNumberInputRef = useRef();
-  const newPasswordInputRef = useRef();
   const authCtx = useContext(AuthContext);
-  const history = useHistory();
+  
+
+  const getUserID = async () => {
+    return fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCiIZRbpwfmboVOVVMN4-WQ9UIS7lWMi7M",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          idToken: authCtx.token,
+        }),
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) =>  data.users[0].localId);
+  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
     //add validation
+   
 
-    
-
-    console.log("started");
+    // console.log(nameInputRef.current.value);
     // Add a new document in collection "cities"
-    setDoc(doc(db, "users", "LA"), {
-      name: "Los Angeles",
-      state: "CA",
-      country: "USA"
-    }).then(res => {
-      console.log("written");
-    });
+    const db = getDatabase();
+    set(ref(db, 'users/' + await getUserID()), {
+      name: nameInputRef.current.value,
+      id: idInputRef.current.value,
+      address: addressInputRef.current.value,
+      phoneNumber: phoneNumberInputRef.current.value
 
-    // fetch(
-    //   "https://application-assignment-3-default-rtdb.firebaseio.com/users.json",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       localID:
-    //       displayName: nameInputRef,
-    //       id: idInputRef,
-    //       address: addressInputRef,
-    //       phoneNumber: phoneNumberInputRef,
-    //     }),
-    //     headers: {
-    //       "content-type": "application/json",
-    //     },
-    //   }
-    // ).then((res) => res.json());
-    // .then(data => console.log(data.users[0].localId))
-    // history.replace("/");
+    }).then(res => {
+      console.log("finish")
+    })
+
+
   };
 
-  //   fetch(
-  //     "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCiIZRbpwfmboVOVVMN4-WQ9UIS7lWMi7M",
-  //     {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         idToken: authCtx.token
-  //       }),
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //     }
-  //   ).then(res => res.json()).then(data => console.log(data.users[0].localId))
-  //     // history.replace("/");
-  // };
+
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
