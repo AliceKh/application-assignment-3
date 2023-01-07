@@ -33,7 +33,7 @@ url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key
 
 }else{
 
-  url =  'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCiIZRbpwfmboVOVVMN4-WQ9UIS7lWMi7M' ; 
+  url =  'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCiIZRbpwfmboVOVVMN4-WQ9UIS7lWMi7M' ; 
  
 }
 fetch (url ,
