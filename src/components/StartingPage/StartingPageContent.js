@@ -1,10 +1,16 @@
-import classes from './StartingPageContent.module.css';
+import classes from "./StartingPageContent.module.css";
+import SearchById from "./SearchById";
 
 const StartingPageContent = () => {
   return (
-    <section className={classes.starting}>
-      <h1>Welcome on Board!</h1>
-    </section>
+    <div>
+      <section className={classes.starting}>
+        <h1>Welcome on Board!</h1>
+      </section>
+      <section>
+        <SearchById></SearchById>
+      </section>
+    </div>
   );
 };
 
