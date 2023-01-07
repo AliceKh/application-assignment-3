@@ -12,7 +12,7 @@ import {
   import { auth, db, storage } from "../../firebase.js";
   import { createUserWithEmailAndPassword } from "firebase/auth";
   import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-  import { getDatabase, ref, set } from "firebase/database";
+  import { getDatabase, set } from "firebase/database";
 
 
 const AddDetails = () => {
@@ -41,10 +41,10 @@ const AddDetails = () => {
 
 // function writeUserData(userId, name, email, imageUrl) {
   const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
-    username: name,
-    email: email,
-    profile_picture : imageUrl
+  set(ref(db, 'users/' + "userId"), {
+    username: "name",
+    email: "email",
+    profile_picture : "imageUrl"
   });
 // }
    
