@@ -1,12 +1,14 @@
 import classes from './User.module.css';
 
-const User = () => {
+const User = ({name, id, address, phoneNumber}) => {
   return (
     <center><card className={classes.card}>
-      <h1>Name:</h1>
-      <p class="title">Name:</p>
-      <p>Name:</p>
-      <p>Phone Number:</p>
+      {console.log()}
+      <h1>Name: {name}</h1>
+      {/* <p class="title">Name:</p> */}
+      <p>Id: {id}</p>
+      <p>Phone Number: {phoneNumber}</p>
+      <p>Address: {address}</p>
     </card></center>
   );
 };
