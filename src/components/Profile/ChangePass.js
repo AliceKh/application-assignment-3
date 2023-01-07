@@ -1,9 +1,9 @@
 import { useContext, useRef } from 'react';
 import AuthContext from '../../store/auth-context';
-import classes from './ProfileForm.module.css';
+import classes from './ChangePass.module.css';
 import { useHistory } from 'react-router-dom';
 
-const ProfileForm = () => {
+const ChangePass = () => {
 
   const newPasswordInputRef = useRef();
   const authCtx = useContext(AuthContext);
@@ -47,4 +47,4 @@ const ProfileForm = () => {
   );
 }
 
-export default ProfileForm;
+export default ChangePass;
